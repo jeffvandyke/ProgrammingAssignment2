@@ -2,10 +2,13 @@
 ## its inverse so that it doesn't need to recompute it everytime it's needed.
 
 ## the object returned has access to a privately stored matrix and its inverse,
-## both of which 
+## both of which can be publicly modified and accessed using their accessor
+## functions.
 
 
 
+## makeCacheMatrix(x = matrix())
+##
 ## This function returns a list which represents an object with functions
 ## to interact with the private matrix and its inverse.
 ## list members:
@@ -18,7 +21,7 @@ makeCacheMatrix <- function(x = matrix()) {
   
   inverse <- NULL
   
-  #function definitions to access private 'x' and 'inverse'
+  # function definitions to access private 'x' and 'inverse'
   set <- function(y) {
     x <<- y
     inverse <<- NULL
@@ -57,7 +60,7 @@ cacheSolve <- function(x, ...) {
     return(inverse)
   }
   # if not, compute the inverse from the solve function,
-  # using any additional arguments if needed
+  # using any additional arguments if needed.
   data <- x$get()
   inverse <- solve(data, ...)
   x$setinverse(inverse)
