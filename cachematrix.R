@@ -9,10 +9,10 @@
 ## This function returns a list which represents an object with functions
 ## to interact with the private matrix and its inverse.
 ## list members:
-##  get() - returns the internal matrix
 ##  set(y) - sets the internal matrix to y and clears the cached 'inverse'
-##  getinverse(i) - returns the internal inverse
+##  get() - returns the internal matrix
 ##  setinverse(i) - sets the internal inverse to i
+##  getinverse(i) - returns the internal inverse
 
 makeCacheMatrix <- function(x = matrix()) {
   
@@ -25,12 +25,12 @@ makeCacheMatrix <- function(x = matrix()) {
   }
   
   get <- function() x
+
+  setinverse <- function(i) inverse <<- i
   
   # (it would actually be best to put the whole solver inside this function,
   #  proper way to work a straightforward cache, oh requirements ...)
   getinverse <- function() inverse
-  
-  setinverse <- function(i) inverse <<- i
   
   # return the object with the members needed to 
   # interact with the private variables.
